@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metalink version="3.0" xmlns="http://www.metalinker.org/">{% if comment %}<!-- {{ comment }} -->{% endif %}
+  <files>
+  {% for file in files %}
+    <file name="{{ file.name|e }}">
+      {% if file.size %}<size>{{ file.size }}</size>{% endif %}
+      <verification>{% for d in file.digests %}
+        <hash type="{{ d|replace("sha","sha-") }}">{{ file.digests[d] }}</hash>
+{% endfor %}      </verification>
+      <resources>{% for url in file.urls %}
+        <url{{ url.a|xmlattr }}>{{ url.v|e }}</url>
+{% endfor %}      </resources>
+    </file>
+  {% endfor %}
+  </files>
+</metalink>
+

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}, site development{% endblock %}
+{% block page %}
+<div style="text-align: left">
+  <h1>Our developments</h1>
+  <p>We are always looking to better our hosting and support. Currently we have a fully functional and secure core system. There are always improvements to be made, and we would love to hear from you if you would like a new feature. The following is a list of ideas. If you think any of these should be implemented, please consider using the feedback link on the left of the screen to suggest it.
+  <ul>
+    <li>Write a page on the security we use, and possible attacks made impossible.
+    <li>Add autoclose option for /add/, so the add windows can automatically close after 5 seconds if they are registered with the DM bookmarklet.
+    <li>Add support for URI prefix searches.
+    <li>Add support for mime-type searches.
+  </ul>
+  <strong>Completed</strong>
+  <ul>
+    <li>30th of November, 2009: Basic statistics gathering has started and is shown on the front-page.
+    <li>28th of November, 2009: The Google App Engine started to hate the <tt>vebose_name</tt> keyword arguments we used, wich resulted in 500 errors. Solved now.
+    <li>24th of November, 2009: Dynmirror links in action at <a href="http://logfish.net/pr/ccbuild/downloads/">http://logfish.net/pr/ccbuild/downloads/</a>
+    <li>14th of September, 2009: Added an option to insert a <a href="http://www.coralcdn.org">Coral CDN</a> link for url based metalinks.
+    <li>3rd of September, 2009: Randomize urls in hosted metalinks.
+    <li>25th of August, 2009: Add UserVoice feedback button.
+  </ul>
+  
+  <h2>Helping to mirror a file</h2>
+    <p>To help mirror a file, you would have to download the file and publish it's metadata. Here is a small script to do that:
+    <pre>
+      #!/bin/bash
+      echo UNTESTED
+      exit 1
+      mirrorpath='http://example.com/mirrordir'
+      url=$1
+      bs=`basename "$url"`
+      #Download the file
+      wget -O "$bs" "$url"
+      #Create MD5 hash
+      md5sum "$bs" &gt; "$bs"_md5.txt
+      #Post Metadata
+      wget {{ request.host_url }}/add/?url="$mirrorpath/$bs"_md5.txt
+      #Done, you are now a registered mirror of that file
+    </pre>  
+  
+</div>
+{% endblock %}

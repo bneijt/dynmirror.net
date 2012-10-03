@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}, insert metadata{% endblock %}
+{% block page %}
+  <div id="insert">
+    <p>Here you can submit an url to a file containing hash information (like MD5SUMS files).<br> If you are not sure if you have such a link, consider using the DM bookmarklet on <a href="/help/users/">the users help page</a>.
+    <form action="/add/" method="get" id="search_form">
+      <img src="/var/img/wipe.png" onclick='$("#url").val("");' class="button"><input type="text" name="url" id="url" value="{{ url|e }}">
+      <input type="submit" value="Add file">
+    </form>
+  </div>
+  <div id="msgs">
+  {% for msg in msgs %}
+    <div class="{{ msg[0] }}">{{ msg[1]|e }}</div>
+  {% endfor %}
+  </div>
+{% endblock %}

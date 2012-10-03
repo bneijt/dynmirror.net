@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}, metalinking the internet{% endblock %}
+{% block page %}
+  <div id="search">
+    <form action="/" method="get" id="search_form">
+      <img src="/var/img/wipe.png" onclick='$("#query").val("");' class="button">
+      <input type="text" name="q" id="query" value="{{ query|e }}">
+      <input type="submit" value="Search" id="submit_search">
+    </form>
+    <div class="search_meta">{% if query %}{{ search_type|e }} for &quot;{{ query|e }}&quot;{% endif %}</div>
+  </div>
+  <div id="results_parent">
+{% if query %}
+  {% if not results[0] %}<p><strong>No results found</strong>, try <a href="http://www.google.com/search?q=filetype%3Ametalink+{{ query|e }}">searching Google for an existing metalink</a>.{% endif %}
+
+  <dl class="result">
+  {% for result in results %}
+      <dt>
+        <a href="/metalink/{{ result.largest_hash()|e }}.metalink">{{ result.name|e }}</a><br>
+      <dd>
+        <table>
+          <tr><td>URL<td><small>{% if result.available %}<a href="{{ result.url() }}">{% endif %}{{ result.url()|e }}{% if result.available %}</a>{% endif %}</small>
+          {% if result.mime_type %}<tr><td>MIME type<td><a href="/?q={{ result.mime_type|e }}">{{ result.mime_type|e }}</a>{% endif %}
+          {% if result.size %}<tr><td>Size<td>{{ result.size|e }} bytes{% endif %}
+          {% if result.md5 %}<tr><td>MD5<td>{{ result.md5|e }}{% endif %}
+          {% if result.sha1 %}<tr><td>SHA1<td>{{ result.sha1|e }}{% endif %}
+          {% if result.sha256 %}<tr><td>SHA256<td>{{ result.sha256|e }}{% endif %}
+          {% if result.sha512 %}<tr><td>SHA512<td>{{ result.sha512|e }}{% endif %}
+        </table>
+      </p>
+  {% endfor %}
+  </dl>
+{% else %}
+  <p>Are you: <em><a href="/?q=ubuntu">looking for a file</a>, <a href="/help/developers/">a website developer</a>, or <a href="/about/">just looking around</a>?</em></p>
+  <p><br>
+  {% if last_metalinks %}
+  <p>Latest downloads<br>
+  {% for link in last_metalinks %}
+      <a href="/metalink/?url={{ link }}" title="dynmirror metalink"><img src="http://www.dynmirror.net/var/img/metalink_16x16.png" alt="dynmirror metalink"> {{ link }}</a> <br>
+  {% endfor %}
+  </p>
+  {% endif %}
+  {% if last_referrers %}
+  <p>Latest referrers<br>
+  {% for link in last_referrers %}
+      <a href="{{ link }}" title="dynmirror referrer">{{ link }}</a><br>
+  {% endfor %}
+  </p>
+  {% endif %}
+
+{% endif %}
+  </div>
+{% endblock %}
+

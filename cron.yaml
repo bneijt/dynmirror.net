@@ -1,0 +1,8 @@
+cron:
+- description: Quarterly url checking
+  url: /tasks/validate
+  schedule: every 30 minutes
+- description: Weekly database janitor
+  url: /tasks/janitor
+  schedule: every thu 14:00
+

@@ -1,0 +1,102 @@
+body {
+	font-family: 'Bitstream Vera Sans', Verdana, sans-serif;
+	margin: 0;
+}
+
+input {
+  border: 5px solid blue;
+  background-color: white;
+}
+input[type='text'] {
+  width: 40em;
+}
+a {
+	text-decoration: none;
+	color: blue;
+}
+a:hover {
+	text-decoration: none;
+	color: orange;
+}
+a img {
+	border: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+
+.result {
+  text-align: left;
+  padding-left: 2em;
+}
+tr >:first-child {
+  text-align: right;
+  color: gray;
+  vertical-align: top;
+  background-color: white;
+}
+.bookmarklet {
+  background-color: #eee;
+  color: black;
+  border: 2px silver outset;
+  margin: 1em;
+  padding: 2px 1em 2px 1em;
+}
+.center {
+  text-align: center;
+}
+.subblock {
+  border-left: 2px solid blue;
+  margin-left: 1em;
+  text-indent: 1em;
+}
+
+.clickable {
+	cursor: pointer;
+	font-weight: bold;
+}
+
+img.button {
+  padding: 5px;
+  vertical-align: middle;
+}
+#title{
+  font-size: 250%;
+}
+#subtitle{
+  font-style: italic;
+  font-size: 85%;
+}
+
+#meta_box {
+  float: right;
+  font-size: small;
+  vertical-align: top;
+}
+#page {
+  position: absolute;
+  text-align: center;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 65%;
+  top: 1em;
+  padding: 2em;
+}
+#menu * a {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+#msgs {
+  text-align: left;
+}
+#msgs > .insert {
+  background-color: palegreen;
+  color: black;
+}
+#msgs > .bad {
+  background-color: red ;
+  color: black;
+}
+

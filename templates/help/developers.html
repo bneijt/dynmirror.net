@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}, for developers{% endblock %}
+{% block head_tail %}
+<script type="text/javascript"><!--
+function set_url_value()
+{
+	var msg = prompt("What is the url to your download?");
+	if(!msg)
+		document.getElementById('url_url').innerHTML = 'http://example.com/directory/example.iso';
+	else
+		document.getElementById('url_url').innerHTML = escape(msg);
+}
+//--></script>
+{% endblock %}
+{% block page %}
+<div style="text-align: left">
+  <h1>For developers</h1>
+  <p>Dynmirror allows you to dynamically link up mirrors for your files using <a href="http://sourceforge.net/apps/trac/metalinks/wiki/WhatAreMetalinks">metalinks</a>. Because the metadata is used by the metalink download client, the downloader is protected against faulty mirrors.
+
+  <h2>Three steps to adding metalinks to your site</h2>
+  <ol>
+
+  <li><h3>Add a link that will generate a metalink</h3>
+  <p>Next to every download URL we add a metalink download URL. We do this by adding a link to <tt>{{ request.host_url }}/metalink/?url=</tt> with the download link in <span class="clickable" onclick="set_url_value();">the url argument</span>. For example:
+  <pre>
+    {{ request.host_url }}/metalink/?url=<span id="url_url" class="clickable" onclick="set_url_value();">http://example.com/directory/example.iso</span>
+  </pre>
+  Click on the url argument to use Javascript to change it. You can also add some <a href="#optional_arguments">optional arguments</a>, which are described at the bottom of the page. The newly created link will instantly work as a metalink, but will not bring much download benefit to your users. To add that, you need to register the metadata of the download and do the same for the mirrors.
+  <p>
+  Extra: Using the metalink icon will help your users identify the link type, feel free to use: http://www.dynmirror.net/var/img/metalink_16x16.png
+
+  <li><h3>Host your metadata</h3>
+  <p>Host MD5, SHA-1, SHA-256 or SHA-512 hash information if you have not done that already, for example:
+  <pre>
+    md5sum * &gt; MD5SUMS    
+  </pre>
+  Now host the MD5SUMS file next to your file. This will tell any downloader what you think the digest of the download should be.
+  
+  <li><h3>Post your metdata</h3>
+  <p>The last step is telling dynmirror about the files you host by pointing it to the metadata created in the previous step. Using the metadata, dynmirror can find other servers hosting the same data. You can do this using the <a href="/add/">online form</a> or use any other http client, like curl:
+  <pre>
+    curl '{{ request.host_url }}/add/?url=http://example.com/directory/MD5SUMS'
+  </pre>
+  <p>Repeat that for all your mirrors, and users of the link we created in the first step will automatically start using those mirrors. Because it's a metalink, their client will check the MD5 after download so the download is still secure.
+  </ol>
+  <h2>For download client developers</h2>
+  <p>Download clients are free to use our service to seek extra mirrors for their links. Simply use the link in step 1 to get more mirrors if you only know the URL. If you know the MD5, SHA-1, SHA-256 or SHA-512 of the file, use:
+  <code>{{ request.host_url }}/metalink/<em>LOWERCASE HEX DIGEST</em>.metalink</code>
+  
+  <h2><a name="optional_arguments"></a>Optional arguments</h2>
+  <p>There are some optional arguments you can add to your dynmirror.net url, these are:
+  <dl>
+    <dt><tt>coral</tt>
+    <dd>Add a link for the <a href="http://www.coralcdn.org/">Coral CDN</a> proxy service. This only works for <a href="http://wiki.coralcdn.org/wiki.php?n=Main.FAQ#largefiles">files up to 50 MB in size</a>, and is only allowed on URL based metalink request (not the http://www.dynmirror.net/<em>hex_digest</em>.metalink links).
+      <br>Example: <tt>http://www.dynmirror.net/metalink/?url=http://example.org/file&amp;coral</tt>
+  </dl>
+  <h2>Our development</h2>
+  <p>We are always trying to make this site better. We are happy to share with you <a href="/help/developments/">what we are working on</a>.
+  
+   
+</div>
+{% endblock %}

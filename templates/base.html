@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  <link rel="shortcut icon" type="image/x-icon" href="/var/img/favicon.ico">
+  <title>Dynmirror{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" type="text/css" href="/var/css/base.css">
+  <script type="text/javascript" src="/var/jquery/jquery.min.js"></script>
+  {% block head_tail %}{% endblock %}
+</head>
+<body>
+{% block body %}<div id="page">
+  {%block header %}<div id="title"><a href="http://www.dynmirror.net/">Dynamic mirroring</a></div>
+                  <div id="subtitle">Rapid dynamic mirroring using metalinks</div>
+  <div id="menu">
+    <p>
+      <a href="/about/">about</a>
+      <a href="/help/users/">for users</a>
+      <a href="/help/developers/">for developers</a>
+      <a href="/add/">add url</a>
+  </div>
+  {% endblock %}
+  {% block page %}404 not really found yet... try going to <a href="/">the top</a>.
+  {% endblock %}
+  <div style="margin-top: 4em;">
+  <a href="http://metalinker.org/"><img src="/var/img/metalink.png" alt="Powered by Metalink"></a>
+  <a href="https://appengine.google.com/"><img src="/var/img/appengine-noborder-120x30.png" alt="Powered by Google App Engine" ></a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+  document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+</script>
+<script type="text/javascript">
+UserVoice.Tab.show({ 
+  /* required */
+  key: 'dynmirror',
+  host: 'dynmirror.uservoice.com', 
+  forum: '27068', 
+  /* optional */
+  alignment: 'left',
+  background_color:'#00f', 
+  text_color: 'white',
+  hover_color: '#ffa500',
+  lang: 'en'
+})
+</script>
+
+{% endblock %}
+</body>
+</html>
+

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}, for users{% endblock %}
+{% block page %}
+<div style="text-align: left">
+  <h1>What dynmirror can do for you</h1>
+  <p>Dynmirror is about making your downloads go faster, be more reliable, and easier. The best way to enjoy this is by using a download program that supports metalinks. If you don't have a program that supports metalinks, you can still use our search interface to search for files you might like. As soon as you have installed a plugin or program that support metalink downloads, you can use our metalinks easily and transparantly. We have selected <a href="/help/metalink_client/">a list of programs</a> for you, but you are free to shop around the internet to find one you like. Continue reading below if you have a download clients or if you just want to help searching for files.
+
+  <h2>I have metalink support</h2>
+  <p>If you have a <a href="/help/metalink_client/">metalink supporting download program</a>, then you can use our metalinks to speed up your downloads. It is even possible to try to speed up large downloads. To try this out, <strong>drag</strong> the following <strong>button to</strong> your links <strong>toolbar</strong>:
+  
+  <div class="center"><a href="javascript:(function(){ {{ bookmarklet|e }} })()" class="bookmarklet">DM</a><br> <small>version 1.0.1</small></div>
+  <p>The button is what is called a bookmarklet, it is not a link but a small program that will alter the page you are looking at when you click on it. On any page you want to download something using dynmirror, you can click on the DM bookmark button. The button will instantly transform any link into a dynamic mirror link and adds "DM" to the name of the link. Then you click on the "DM" link like normal, and your download may be faster! The DM bookmarklet will also automatically add any metadata to the database to help you find more sources.
+
+  <h2>I just want to search for files</h2>
+  <p>If you just want to search for files, here are a few of the supported ways of searching for files:
+  <dl>
+    <dt>Filename searches
+    <dd>You can search the database for a prefix of the filename you are looking for. For example "ubuntu" will match any file which starts with "ubuntu". Matching like this is done case-insensitive, so it will also show results for "Ubuntu".
+    <br>Example: <tt>ubuntu</tt>
+    <p>You can also use case-sensitive searches, by making a letter uppercase the search will become case sensitive.
+    <br>Example: <tt>PClinux</tt>
+    
+    <dt>Digest searches
+    <dd>You can search for any of the supported digest types, by placing the digest in lowercase hex format in the search box. The search engine will recognize the kind of digest it is by looking at the length.
+    <br>Example (searching for MD5): <tt>5e6f6acf2105c366db2f9727e2a65d03</tt>
+  
+  </dl>
+</div>
+
+{% endblock %}

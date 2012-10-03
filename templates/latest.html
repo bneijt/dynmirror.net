@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}, latest metadata{% endblock %}
+{% block page %}
+<div style="text-align:left">
+  <p>Latest {{ limit }} additions to the database:
+  <ol>
+{% for file in files %}
+  <li><a href="{{ file.url()|e }}">{{ file.name|e }}</a> {% if file.available %}<small>(Available)</small>{% endif %}<br>
+      mod-time: {{ file.mtime|e }}<br>
+      {% if file.md5 %}MD5: {{ file.md5|e }}<br>{% endif %}
+      {% if file.sha1 %}SHA1: {{ file.sha1|e }}<br>{% endif %}
+      {% if file.sha256 %}SHA256: {{ file.sha256|e }}<br>{% endif %}
+      {% if file.sha512 %}SHA512: {{ file.sha512|e }}<br>{% endif %}
+  </li>
+{% endfor %}
+  </ol>
+</div>
+{% endblock %}
+

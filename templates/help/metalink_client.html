@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}, finding a metalink download client{% endblock %}
+{% block head_tail %}
+<style>
+#client_suggestions h3 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+#client_suggestions .client {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+  margin-top: 1em;
+  border: 2px outset black;
+  cursor: pointer;
+}
+#client_suggestions .morelink {
+  text-align: right;
+  font-weight: italic;
+}
+</style>
+{% endblock %}
+{% block page %}
+<div style="text-align: left">
+  <p>To be able to use metalinks, you will need a download client. This is a program which will intelligently help you download files by automatically fixing common problems like: slow downloads, corrupted files, broken links, and bussy servers.
+  </p>
+  <div id="client_suggestions">
+  </div>
+  <script language="javascript" src="/var/select_metalink_download_client.js"> You have no javascript support and therefore we can not make an automatic selection of clients for you.</script>
+  <p>Feel free to choose one manually from the <a href="http://en.wikipedia.org/wiki/Metalink#Metalink_client_feature_comparison">Wikipedia page of metalink download clients</a>.
+</div>
+
+{% endblock %}
